@@ -1,0 +1,40 @@
+name: Check PR
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "^1.21.0"
+
+      - name: Verify dependencies
+        run: go mod verify
+
+      - name: Run go vet
+        run: go vet ./...
+
+      - name: Run go mod tidy
+        run: go mod tidy
+
+      - name: Check for dependency changes
+        run: git diff --name-only -r HEAD^1 HEAD
+
+      - name: Format Code
+        run: |
+          go fmt
+
+      - name: Check for code changes
+        run: git diff --name-only -r HEAD^1 HEAD
