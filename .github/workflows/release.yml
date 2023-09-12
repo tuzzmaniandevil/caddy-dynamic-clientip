@@ -8,9 +8,10 @@ on:
 jobs:
   release:
     name: Release
-
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'tuzzmaniandevil/caddy-dynamic-clientip' }}
+    permissions:
+      contents: write
 
     steps:
       - name: Determine tag
