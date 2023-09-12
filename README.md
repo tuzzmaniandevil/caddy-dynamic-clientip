@@ -1,6 +1,6 @@
 # Dynamic Client IP matcher for Caddy
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GoReportCard example](https://goreportcard.com/badge/github.com/tuzzmaniandevil/caddy-dynamic-clientip_t=3145938)](https://goreportcard.com/report/github.com/tuzzmaniandevil/caddy-dynamic-clientip) ![GitHub](https://img.shields.io/github/license/tuzzmaniandevil/caddy-dynamic-clientip?_t=3145938)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GoReportCard example](https://goreportcard.com/badge/github.com/tuzzmaniandevil/caddy-dynamic-clientip?_t=3145938)](https://goreportcard.com/report/github.com/tuzzmaniandevil/caddy-dynamic-clientip) ![GitHub](https://img.shields.io/github/license/tuzzmaniandevil/caddy-dynamic-clientip?_t=3145938)
 
 The `dynamic_client_ip` module is a clone of the `client_ip` matcher with one key difference: instead of providing IP ranges upfront, you specify an `IPRangeSource`. This allows IP ranges to be dynamically loaded per request.
 
