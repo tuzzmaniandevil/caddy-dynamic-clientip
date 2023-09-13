@@ -18,8 +18,8 @@ func init() {
 	caddy.RegisterModule(MatchDynamicClientIP{})
 }
 
-// MatchDynamicClientIP matchers the requests bu the client IP address.
-// The IP ranged are profided by modules to allow for ranges to be dynamic
+// MatchDynamicClientIP matchers the requests by the client IP address.
+// The IP ranges are provided by modules to allow for dynamic ranges.
 type MatchDynamicClientIP struct {
 	// A module which provides a source of IP ranges, from which
 	// requests are matched.
