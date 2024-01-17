@@ -86,7 +86,7 @@ func (m *MatchDynamicClientIP) Provision(ctx caddy.Context) error {
 
 func (m MatchDynamicClientIP) Match(r *http.Request) bool {
 	address := caddyhttp.GetVar(r.Context(), caddyhttp.ClientIPVarKey).(string)
-	clientIP, err := ParseIPZoneFromString(address)
+	clientIP, err := parseIPFromString(address)
 
 	if err != nil {
 		m.logger.Error("getting client IP", zap.Error(err))
@@ -98,7 +98,7 @@ func (m MatchDynamicClientIP) Match(r *http.Request) bool {
 	return matches
 }
 
-func ParseIPZoneFromString(address string) (netip.Addr, error) {
+func parseIPFromString(address string) (netip.Addr, error) {
 	ipStr, _, err := net.SplitHostPort(address)
 	if err != nil {
 		ipStr = address // OK; probably didn't have a port
