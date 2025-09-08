@@ -84,18 +84,18 @@ func (m *MatchDynamicClientIP) Provision(ctx caddy.Context) error {
 	return nil
 }
 
-func (m MatchDynamicClientIP) Match(r *http.Request) bool {
+func (m MatchDynamicClientIP) MatchWithError(r *http.Request) (bool, error) {
 	address := caddyhttp.GetVar(r.Context(), caddyhttp.ClientIPVarKey).(string)
 	clientIP, err := parseIPFromString(address)
 
 	if err != nil {
 		m.logger.Error("getting client IP", zap.Error(err))
-		return false
+		return false, err
 	}
 
 	matches := m.matchIP(r, clientIP)
 
-	return matches
+	return matches, nil
 }
 
 func parseIPFromString(address string) (netip.Addr, error) {
@@ -134,8 +134,8 @@ func (m *MatchDynamicClientIP) matchIP(r *http.Request, clientIP netip.Addr) boo
 
 // Interface guards
 var (
-	_ caddy.Module             = (*MatchDynamicClientIP)(nil)
-	_ caddy.Provisioner        = (*MatchDynamicClientIP)(nil)
-	_ caddyfile.Unmarshaler    = (*MatchDynamicClientIP)(nil)
-	_ caddyhttp.RequestMatcher = (*MatchDynamicClientIP)(nil)
+	_ caddy.Module                      = (*MatchDynamicClientIP)(nil)
+	_ caddy.Provisioner                 = (*MatchDynamicClientIP)(nil)
+	_ caddyfile.Unmarshaler             = (*MatchDynamicClientIP)(nil)
+	_ caddyhttp.RequestMatcherWithError = (*MatchDynamicClientIP)(nil)
 )
