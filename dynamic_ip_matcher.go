@@ -118,7 +118,7 @@ func parseIPFromString(address string) (netip.Addr, error) {
 
 func (m *MatchDynamicClientIP) matchIP(r *http.Request, clientIP netip.Addr) bool {
 	if m.Providers == nil {
-		// We have no provier, So we can't match anything
+		// We have no provider, So we can't match anything
 		return false
 	}
 
